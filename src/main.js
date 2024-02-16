@@ -24,6 +24,16 @@ const hideLoader = () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
   const userRequest = inputData.value;
+
+  // Check for empty or short input before making the API request
+  if (!userRequest.trim()) {
+    iziToast.error({
+      message: 'Please enter a valid search query.',
+      position: 'topRight',
+    });
+    return;
+  }
+
   showLoader();
   gallery.innerHTML = '';
   searchImages(userRequest);
@@ -32,6 +42,7 @@ form.addEventListener('submit', e => {
 function searchImages(userRequest) {
   const personalKey = '42394158-5c4cd21eee44163ae27aefe31';
   const url = `https://pixabay.com/api/?key=${personalKey}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true`;
+
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -50,24 +61,28 @@ function searchImages(userRequest) {
       } else {
         const markup = data.hits
           .map(data => {
-            return `<li class="gallery-item"><a href="${data.webformatURL}">
-          <img class="gallery-image" src="${data.webformatURL}" alt="${data.tags}"></a>
-          <p><b>Likes: </b>${data.likes}</p>
-          <p><b>Views: </b>${data.views}</p>
-          <p><b>Comments: </b>${data.comments}</p>
-          <p><b>Downloads: </b>${data.downloads}</p>
-          </li>`;
+            return `<li class="gallery-item"><a href="${data.largeImageURL}"> <!-- Use largeImageURL -->
+              <img class="gallery-image" src="${data.webformatURL}" alt="${data.tags}"></a>
+              <p><b>Likes: </b>${data.likes}</p>
+              <p><b>Views: </b>${data.views}</p>
+              <p><b>Comments: </b>${data.comments}</p>
+              <p><b>Downloads: </b>${data.downloads}</p>
+            </li>`;
           })
           .join('');
         gallery.insertAdjacentHTML('afterbegin', markup);
+
+        // Correct usage of SimpleLightbox
         const lightbox = new SimpleLightbox('.gallery a', properties);
-        lightbox.on('show.simplelightbox');
         lightbox.refresh();
-        form.reset();
       }
     })
     .catch(error => {
-      console.log(error);
+      // Show user-friendly error message using iziToast.error()
+      iziToast.error({
+        message: 'An error occurred. Please try again later.',
+        position: 'topRight',
+      });
     })
     .finally(() => {
       hideLoader();
