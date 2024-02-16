@@ -4,5 +4,5 @@ import{i as a,S as l}from"./assets/vendor-5b791d57.js";(function(){const i=docum
               <p><b>Views: </b>${r.views}</p>
               <p><b>Comments: </b>${r.comments}</p>
               <p><b>Downloads: </b>${r.downloads}</p>
-            </li>`).join("");c.insertAdjacentHTML("afterbegin",e),new l(".gallery a",h).refresh()}}).catch(s=>{a.error({message:"An error occurred. Please try again later.",position:"topRight"})}).finally(()=>{d()})}const h={captions:!0,captionSelector:"img",captionType:"attr",captionsData:"alt",captionPosition:"bottom",animation:250};
+            </li>`).join("");c.insertAdjacentHTML("afterbegin",e),new l(".gallery a",y).refresh()}}).catch(s=>{a.error({message:"An error occurred. Please try again later.",position:"topRight"})}).finally(()=>{d()})}const y={captions:!0,captionSelector:"img",captionType:"attr",captionsData:"alt",captionPosition:"bottom",captionDelay:250,animation:250};
 //# sourceMappingURL=commonHelpers.js.map
