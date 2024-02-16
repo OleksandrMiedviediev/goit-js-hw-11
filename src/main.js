@@ -95,5 +95,6 @@ const properties = {
   captionType: 'attr',
   captionsData: 'alt',
   captionPosition: 'bottom',
+  captionDelay: 250,
   animation: 250,
 };
