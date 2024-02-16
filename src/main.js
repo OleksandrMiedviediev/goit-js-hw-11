@@ -30,7 +30,7 @@ form.addEventListener('submit', e => {
 });
 
 function searchImages(userRequest) {
-  const personalKey = '42271684-72e9093d4988315267462c0c1';
+  const personalKey = '42394158-5c4cd21eee44163ae27aefe31';
   const url = `https://pixabay.com/api/?key=${personalKey}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true`;
   fetch(url)
     .then(response => {
