@@ -25,7 +25,6 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const userRequest = inputData.value;
 
-  // Check for empty or short input before making the API request
   if (!userRequest.trim()) {
     iziToast.error({
       message: 'Please enter a valid search query.',
@@ -72,13 +71,11 @@ function searchImages(userRequest) {
           .join('');
         gallery.insertAdjacentHTML('afterbegin', markup);
 
-        // Correct usage of SimpleLightbox
         const lightbox = new SimpleLightbox('.gallery a', properties);
         lightbox.refresh();
       }
     })
     .catch(error => {
-      // Show user-friendly error message using iziToast.error()
       iziToast.error({
         message: 'An error occurred. Please try again later.',
         position: 'topRight',
